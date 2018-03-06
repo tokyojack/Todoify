@@ -1,0 +1,1 @@
+INSERT INTO todoLists(title, user_id) VALUES(?,?);

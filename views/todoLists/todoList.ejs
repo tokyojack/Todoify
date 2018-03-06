@@ -1,0 +1,46 @@
+<% include ../partials/general/header.ejs %>
+
+<id><%= id %></id>
+
+<div class="container">
+    <table class="bordered striped responsive-table">
+        <thead>
+          <tr>
+              <th class="table-title"><span class="left-align">TODO</span><a href="#modal1" class="add-button z-depth-3 btn-floating waves-effect waves-light blue btn modal-trigger"><i class="material-icons">add</i></a></th>
+          </tr>
+        </thead>
+
+        <tbody>
+          
+          
+          <% for(var i = 0; i < todos.length; i++){  %>
+           <tr>
+            <td <%- todos[i].is_done == 1 ? "class='complete todo'" : "class='todo'"  %>><span class="delete"><i class="material-icons delete-icon">delete</i></span><span class="todo-title"><%=  todos[i].title %></span></td>
+          </tr>
+          <% } %>
+        
+        </tbody>
+      </table>
+  
+</div>
+
+  <!-- Modal Structure -->
+  <div id="modal1" class="modal modal-fixed-footer">
+    <div class="modal-content">
+      <h4>Add Todo</h4>
+
+          <input placeholder="Title" type="text" class="validate title-input">
+
+
+    </div>
+    <div class="modal-footer">
+      <a class="modal-action modal-close waves-effect waves-green btn-flat agree-button">Add</a>
+    </div>
+  </div>
+
+<!--DOwnloaded version?-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.4/socket.io.js"></script>
+
+<script type="text/javascript" src="/js/todoList.js"></script>
+
+<% include ../partials/general/footer.ejs %>

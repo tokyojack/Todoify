@@ -1,0 +1,1 @@
+SELECT title, is_done FROM todos WHERE todo_list_id=?;
