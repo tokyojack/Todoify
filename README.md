@@ -23,4 +23,4 @@ should be able to figure it out from there.
 
 ##
 
-Now you've just install the program! Uh oh, people must be super jelous of your new fancy todo lists... ```┬┴┬┴┤ ͜ʖ ͡°) ├┬┴┬┴```!
+Now you've just install the program! Uh oh, people must be super jelous of your new super fancy todo lists... ```┬┴┬┴┤ ͜ʖ ͡°) ├┬┴┬┴```!
