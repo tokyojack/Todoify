@@ -1,28 +1,25 @@
-module.exports = function(pool, socket) {
+module.exports = function (pool, socket) {
 
-    socket.on('add', function(todo) {
-        var todoListId = parseInt(todo.id);
+    socket.on("add", function (todo) {
         var title = todo.title;
 
-        pool.getConnection(function(err, connection) {
-
-            if (err) {
-                console.log(err);
+        pool.getConnection(function (err, connection) {
+            if (flashUtils.isDatabaseError(req, res, "/", err))
                 return;
-            }
 
-            connection.query("INSERT INTO todos(title, todo_list_id) VALUES(?,?)", [title, todoListId], function(err, rows) {
+            var addTodo = require("./queries/addTodo.sql");
+
+            connection.query(addTodo, [title, parseInt(todo.id)], function (
+                err,
+                rows
+            ) {
                 connection.release();
 
-                if (err) {
-                    console.log(err);
+                if (flashUtils.isDatabaseError(req, res, "/", err))
                     return;
-                }
 
                 console.log("Successfully added: " + title);
-
             });
-
         });
     });
 

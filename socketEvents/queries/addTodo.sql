@@ -1,0 +1,1 @@
+INSERT INTO todos(title, todo_list_id) VALUES(?,?)

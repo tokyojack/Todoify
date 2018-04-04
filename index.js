@@ -30,7 +30,9 @@ require('./config/passport')(passport, pool);
 
 //============================= Letting express use them =============================
 
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.urlencoded({
+    extended: true
+}));
 app.use(express.static(__dirname + "/public"));
 app.use(flash());
 
@@ -49,11 +51,9 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.use(flash());
-
 var flashUtils = require('./utils/flashUtils');
 
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
     res.locals.error = req.flash("error");
     res.locals.success = req.flash("success");
 
@@ -61,11 +61,11 @@ app.use(function(req, res, next) {
 
         res.locals.user = req.user;
 
-        pool.getConnection(function(err, connection) {
+        pool.getConnection(function (err, connection) {
             if (flashUtils.isDatabaseError(req, res, '/', err))
                 return;
 
-            connection.query("SELECT id, title FROM todoLists WHERE user_id=?", [req.user.id], function(err, rows) {
+            connection.query("SELECT id, title FROM todoLists WHERE user_id=?", [req.user.id], function (err, rows) {
                 connection.release();
 
                 if (flashUtils.isDatabaseError(req, res, '/', err))
@@ -119,7 +119,7 @@ app.use("*", miscRoutes);
 
 //============================= Socket io =============================
 
-io.on('connection', function(socket) {
+io.on('connection', function (socket) {
 
     require('./socketEvents/onAdd')(pool, socket);
     require('./socketEvents/onDelete')(pool, socket);
@@ -130,7 +130,7 @@ io.on('connection', function(socket) {
 //============================= Starting Server =============================
 
 // Make sure it's "http" instead of "app" for Socket.io
-http.listen(8080, function() {
+http.listen(8080, function () {
     console.log("Server running".rainbow);
 });
 

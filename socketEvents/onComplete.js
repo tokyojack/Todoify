@@ -1,29 +1,28 @@
-module.exports = function(pool, socket) {
+module.exports = function (pool, socket) {
 
-    socket.on('complete', function(todo) {
+    socket.on("complete", function (todo) {
         var todoListId = parseInt(todo.id);
         var title = todo.title;
         var isComplete = todo.isComplete;
 
-        pool.getConnection(function(err, connection) {
-
-            if (err) {
-                console.log(err);
+        pool.getConnection(function (err, connection) {
+            if (flashUtils.isDatabaseError(req, res, "/", err))
                 return;
-            }
 
-            connection.query("UPDATE todos SET is_done=? WHERE title=? AND todo_list_id", [(isComplete === true ? 1 : 0), title, todoListId], function(err, rows) {
-                connection.release();
+            var updateTodoIsDone = require("./queries/updateTodoIsDone.sql");
 
-                if (err) {
-                    console.log(err);
-                    return;
+            connection.query(
+                updateTodoIsDone, [isComplete === true ? 1 : 0, title, todoListId],
+                function (err, rows) {
+                    connection.release();
+
+                    if (flashUtils.isDatabaseError(req, res, "/", err))
+                        return;
+
+                    console.log("Successfully update: " + title + " to: " + isComplete);
                 }
-
-                console.log("Successfully update: " + title + " to: " + isComplete);
-            });
-
+            );
         });
     });
-    
+
 };
