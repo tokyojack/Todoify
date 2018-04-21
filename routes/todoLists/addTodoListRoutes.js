@@ -14,7 +14,6 @@ module.exports = function(pool) {
         res.render("todoLists/addTodoList.ejs");
     });
 
-
     // Inserts "todo" on "/addtodolist" form submit
     router.post("/", middleMan.isLoggedIn, function(req, res) {
         pool.getConnection(function(err, connection) {

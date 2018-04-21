@@ -8,8 +8,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "a"
+    "url": "https://github.com/tokyojack/Todoify"
   },
+  "bugs": {
+    "url": "https://github.com/tokyojack/Todoify/issues"
+  },
+  "homepage": "https://github.com/tokyojack/Todoify#readme",
   "author": "Jack Clarke",
   "license": "ISC",
   "dependencies": {
