@@ -1,5 +1,5 @@
 <h2  align="center">Todoify</h2>
-<p  align="center">A simple way for you to keep track of all the things you need to do. Made with Node.js + MySQL</p>
+<p  align="center">A simple way for you to keep track of all the things you need to do</p>
 
 <br/>
 
